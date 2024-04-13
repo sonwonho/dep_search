@@ -1,4 +1,3 @@
-import base64
 import streamlit as st
 import pandas as pd
 
@@ -6,8 +5,8 @@ import pandas as pd
 df = pd.read_csv('deptCode.csv', encoding = "utf-8")
 tab1, tab2 = st.tabs(["관련 법령", "기관 전화번호"])
 
-results = eval(base64.b64decode(st.query_params.lawList))
-deptcode_list = eval(base64.b64decode(st.query_params.deptCodeList))
+results = eval(st.query_params.lawList)
+deptcode_list = eval(st.query_params.deptCodeList)
 phone_df = pd.DataFrame()
 
 with tab1:
