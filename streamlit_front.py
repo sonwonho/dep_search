@@ -11,14 +11,20 @@ phone_df = pd.DataFrame()
 
 with tab1:
     st.title("관련 법령")
-    for r in results:
-        st.text(r["fullName"])
-        st.write(f"{r['lwrdUrl']}")
+    try:
+        for r in results:
+            st.text(r["fullName"])
+            st.write(f"{r['lwrdUrl']}")
+    except:
+        st.text("관련 법률을 찾을 수 없어요")
 
 with tab2:
     st.title("기관 전화번호")
-    for deptcode in deptcode_list:
-        phone_df = pd.concat([phone_df, df[df["기관코드"]==str(deptcode)]], ignore_index=True)
-    del phone_df['기관코드']
-    phone_df = phone_df.reset_index(drop=True)
-    st.table(phone_df.head())
+    try:
+        for deptcode in deptcode_list:
+            phone_df = pd.concat([phone_df, df[df["기관코드"]==str(deptcode)]], ignore_index=True)
+        del phone_df['기관코드']
+        phone_df = phone_df.reset_index(drop=True)
+        st.table(phone_df.head())
+    except:
+        st.text("관련 기관을 찾을 수 없어요.")
