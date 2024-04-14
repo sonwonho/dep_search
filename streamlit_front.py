@@ -12,9 +12,12 @@ phone_df = pd.DataFrame()
 with tab1:
     st.title("관련 법령")
     try:
-        for r in results:
-            st.text(r["fullName"])
-            st.write(f"{r['lwrdUrl']}")
+        if results:
+            for r in results:
+                st.text(r["fullName"])
+                st.write(f"{r['lwrdUrl']}")
+        else:
+            raise Exception()
     except:
         st.text("관련 법률을 찾을 수 없어요")
 
